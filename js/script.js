@@ -1,27 +1,42 @@
+const wrapperEL = document.querySelector('.wrapper');
 
-const circles = document.querySelectorAll('.circles')
+const inputNumber = document.querySelector('.input_number')
 
-const btn = document.querySelector('.btn')
+const btnRun = document.querySelector('.buttonRun')
 
-btn.addEventListener('click', () => {
-   setInterval(() => {
-      changelight();
-   }, 1000)
-})
+let html = "";
 
+let newNumber = "";
 
-let newLight = 0;
-let changelight = () => {
-   circles[newLight].classList = 'circles';
-   newLight += 1
-   if (newLight > 2) {
-      newLight = 0
+btnRun.addEventListener('click', (ev) => {
+   newNumber = Number(inputNumber.value);
+   numberChange = newNumber
+   const renderTL = (placeEL) => {
+
+      for (let i = 1; i <= numberChange; i += 1) {
+         html += `<div class="paralel">${i}</div>`
+      }
+
+      placeEL.innerHTML = html;
+   }
+   const init = (placeEL) => {
+      renderTL(placeEL);
    }
 
-   const correctlight = circles[newLight];
-   correctlight.classList.add(correctlight.getAttribute
-      ("color"));
-}
+   init(wrapperEL);
+
+   const newChangeNumber = () => {
+      let callMeNumber = document.querySelectorAll('.paralel')
+      for (let numb = 0; numb < callMeNumber.length; numb += 1) {
+         callMeNumber[numb].addEventListener('click', () => {
+            callMeNumber[numb].classList.add('show')
+         })
+      }
+
+   }
+   newChangeNumber();
+})
+
 
 
 
